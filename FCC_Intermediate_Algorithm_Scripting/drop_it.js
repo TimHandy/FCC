@@ -2,15 +2,16 @@
 
 function dropElements(arr, func) {
   
-  let newArr = arr;
+  let newArr = arr;  // don't think this is pure, as I just pointed newArr at the reference to arr, so they both point to the same array now. Ahh, but later in a few lines we reassign newArr to the return value of newArr.slice(1) so we never actually made a change to arr. Slice does not mutate the original value.
   
-  while ( !func(newArr[0]) ) {
-    newArr = newArr.slice(1);
+  while ( !func(newArr[0]) ) { 	//while the func(n) i.e the first element of the array is not true (false)... note: the loop will end when/if the array becomes length 0 as it's then false. I think? it worked in FCC; the code passed without an infinite loop, so must be ok! My head hurts.
+    newArr = newArr.slice(1);  //newArr is array with the first value lopped off. newArr[0] now becomes what was previously the 2nd element.
        console.log(newArr);
   }
   return newArr;
 }
 
+dropElements([1, 2, 3, 4], function(n) {return n >= 3;}) should return [3, 4]
 
 
 // Basic Code Solution:
